@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Up MLBB - Dark System</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #0d0d0d;
+            color: #ffffff;
+            padding-bottom: 50px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a, #4a0000);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #ff0000;
+            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #ff3333;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+        }
+
+        header p {
+            font-size: 12px;
+            color: #cccccc;
+            margin-top: 5px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            border-left: 4px solid #ff0000;
+            padding-left: 10px;
+            font-weight: 600;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .card:hover, .card.active {
+            border-color: #ff0000;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 800;
+            color: #ffcc00;
+            margin-bottom: 8px;
+        }
+
+        .card-price {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        .card-desc {
+            font-size: 10px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            color: #fff;
+            outline: none;
+            transition: border 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #ff0000;
+        }
+
+        .user-id-group {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 10px;
+        }
+
+        .btn-buy {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            /* Warna diubah menjadi gradasi hijau khas WhatsApp */
+            background: linear-gradient(90deg, #128C7E, #25D366); 
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            text-transform: uppercase;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn-buy:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>MLBB Store</h1>
+        <p>Proses Cepat • Layanan 24/7</p>
+    </header>
+
+    <div class="container">
+        
+        <h2 class="section-title">1. Masukkan Data Akun</h2>
+        <div class="user-id-group form-group">
+            <input type="number" id="userId" class="form-control" placeholder="User ID" required>
+            <input type="number" id="zoneId" class="form-control" placeholder="Zone ID" required>
+        </div>
+
+        <h2 class="section-title" style="margin-top: 30px;">2. Pilih Nominal</h2>
+        <div class="grid" id="productGrid">
+            
+            <div class="card" onclick="selectProduct(this, 'Weekly Diamond Pass', 26000)">
+                <div class="card-title">WDP</div>
+                <div class="card-price">Rp 26.000</div>
+                <div class="card-desc">Weekly Pass</div>
+            </div>
+
+            <div class="card" onclick="selectProduct(this, '200 Diamonds', 20000)">
+                <div class="card-title">200 DM</div>
+                <div class="card-price">Rp 20.000</div>
+                <div class="card-desc">Paket Hemat</div>
+            </div>
+
+            <div class="card" onclick="selectProduct(this, '86 Diamonds', 9500)">
+                <div class="card-title">86 DM</div>
+                <div class="card-price">Rp 9.500</div>
+                <div class="card-desc">Balmond Pack</div>
+            </div>
+
+            <div class="card" onclick="selectProduct(this, '429 Diamonds', 42000)">
+                <div class="card-title">429 DM</div>
+                <div class="card-price">Rp 42.000</div>
+                <div class="card-desc">Julian Pack</div>
+            </div>
+
+            <div class="card" onclick="selectProduct(this, '878 Diamonds', 85000)">
+                <div class="card-title">878 DM</div>
+                <div class="card-price">Rp 85.000</div>
+                <div class="card-desc">Freya Pack</div>
+            </div>
+
+            <div class="card" onclick="selectProduct(this, '2195 Diamonds', 210000)">
+                <div class="card-title">2195 DM</div>
+                <div class="card-price">Rp 210.000</div>
+                <div class="card-desc">Natan Pack</div>
+            </div>
+            
+        </div>
+
+        <button class="btn-buy" onclick="checkoutWA()">Pesan Via WhatsApp</button>
+    </div>
+
+    <script>
+        let selectedItem = "";
+        let selectedPrice = 0;
+
+        function selectProduct(element, name, price) {
+            let cards = document.querySelectorAll('.card');
+            cards.forEach(c => c.classList.remove('active'));
+
+            element.classList.add('active');
+
+            selectedItem = name;
+            selectedPrice = price;
+        }
+
+        function checkoutWA() {
+            let uid = document.getElementById('userId').value;
+            let zid = document.getElementById('zoneId').value;
+            
+            // GANTI DENGAN NOMOR WHATSAPP KAMU (Gunakan kode negara 62 tanpa + dan angka 0 di depan)
+            // Contoh jika nomor kamu 081234567890 -> tulis 6281234567890
+            let nomorWhatsApp = "6281234567890"; 
+
+            if (uid === "" || zid === "") {
+                alert("Harap isi User ID dan Zone ID terlebih dahulu!");
+                return;
+            }
+
+            if (selectedItem === "") {
+                alert("Silakan pilih nominal top up terlebih dahulu!");
+                return;
+            }
+
+            // Menyusun format pesan WhatsApp
+            let pesan = `Halo Admin, saya mau order Top Up MLBB.%0A%0A`;
+            pesan += `*Rincian Pesanan:*%0A`;
+            pesan += `🎮 User ID : ${uid} (${zid})%0A`;
+            pesan += `💎 Item : ${selectedItem}%0A`;
+            pesan += `💰 Harga : Rp ${selectedPrice.toLocaleString('id-ID')}%0A%0A`;
+            pesan += `Mohon info nomor rekening / e-wallet untuk pembayaran. Terima kasih.`;
+
+            // Membuat link WhatsApp API
+            let linkWA = `https://wa.me/${nomorWhatsApp}?text=${pesan}`;
+
+            // Membuka tab baru yang langsung mengarah ke WhatsApp
+            window.open(linkWA, '_blank');
+        }
+    </script>
+</body>
+</html>
